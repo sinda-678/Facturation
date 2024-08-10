@@ -13,12 +13,17 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static/'),)
 # Chemin vers les fichiers média
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
-
-# Autres configurations ...
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
-
+try:
+    from django.contrib.messages import constants as messages
+    MESSAGE_TAGS = {
+        messages.DEBUG : 'alert-info',
+        messages.INFO : 'alert-info',
+        messages.SUCCES :  'alert-success',
+        messages.WARNING: 'alert-warning',
+        messages.ERROR : 'alert-darger'
+    }
+except Exception as e:
+    pass
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-=z6n9p$s+m@h=!!&c90i5w6n$x)wp2iu1tl@(bij$1yrf^hsv$'
 
