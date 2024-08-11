@@ -13,6 +13,10 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static/'),)
 # Chemin vers les fichiers média
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale'),
+)
 try:
     from django.contrib.messages import constants as messages
     MESSAGE_TAGS = {
@@ -46,6 +50,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -114,7 +119,11 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
+from django.utils.translation import gettext_lazy as _
+LANGUAGE = [
+    ('fr', _('French')),
+    ('en'), _('English'),
+]
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 

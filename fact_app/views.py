@@ -22,7 +22,6 @@ from .utils import pagination, get_invoice
 
 from django.utils.translation import gettext as _
 
-
 from django.template.loader import get_template
 
 # Vue pour la page d'accueil
@@ -119,9 +118,9 @@ class AddCustomerView(View):
             # Création du nouveau client
             created = Customer.objects.create(**data)
             if created:
-                messages.success(request, "Customer registered successfully")
+                messages.success(request, _("Customer registered successfully"))
             else:
-                messages.error(request, "Sorry, please try again. The sent data is corrupt.")
+                messages.error(request, _("Sorry, please try again. The sent data is corrupt."))
         except Exception as e:
             messages.error(request, f"Sorry, our system is detecting the following issues: {e}")
 
@@ -179,9 +178,9 @@ class AddInvoiceView(View):
             created = Article.objects.bulk_create(items)   
 
             if created:
-                messages.success(request, "Data saved successfully.") 
+                messages.success(request, _("Data saved successfully.")) 
             else:
-                messages.error(request, "Sorry, please try again, the sent data is corrupt.")    
+                messages.error(request, _("Sorry, please try again, the sent data is corrupt."))    
 
         except Exception as e:
             messages.error(request, f"Sorry, the following error has occurred: {e}.")   
